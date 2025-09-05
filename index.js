@@ -9,18 +9,17 @@ function getFirstNames(members) {
 
 // 2. Convert everyone’s last names to UPPERCASE in the given array of objects.
 function updateLastNamesToUpperCase(members) {
-    const updated = _.map(members, (m) => {
-        const parts = _.words(m.name); // safer split
-        if (parts.length > 1) {
-          const last = _.toUpper(_.last(parts));
-          return { ...m, name: [..._.initial(parts), last].join(" ") };
-        }
-        return m;
-      });
-      
+  const updated = _.map(members, (m) => {
+    const parts = _.words(m.name);
+    if (parts.length > 1) {
+      const last = _.toUpper(_.last(parts));
+      return { ...m, name: [..._.initial(parts), last].join(" ") };
+    }
+    return m;
+  });
+
   console.log(updated);
 }
-
 
 // 3. Get entries where age is between 41–60.
 function ageBetween41And60(members) {
@@ -28,7 +27,6 @@ function ageBetween41And60(members) {
   console.log(result);
 }
 
-// 4. Get the average age.
 function getAverageAge(members) {
   const ages = _.map(_.filter(members, "age"), "age");
   const avg = _.mean(ages);
@@ -43,22 +41,28 @@ function getPersonWithMaxAge(members) {
 
 // 6. Divide persons into three groups.
 function divideIntoGroups(members) {
-    const groups = _.groupBy(members, (m) => {
-      if (!m.age) return "noage";
-      if (m.age < 35) return "young";
-      return "old";
-    });
-  
-    console.log(groups);
-  }
-  
+  const groups = _.groupBy(members, (m) => {
+    if (!m.age) return "noage";
+    if (m.age < 35) return "young";
+    return "old";
+  });
+
+  console.log(groups);
+}
 
 // 7. Add a new member to the same members array instance at index 2.
 function addNewMemberAtIndex(members, index) {
-  const newMember = { name: "New Member", age: 30 };
-  _.splice(members, index, 0, newMember);
-  console.log(members);
-}
+    const newMember = { name: "New Member", age: 30 };
+  
+    const updated = _.concat(
+      _.slice(members, 0, index),
+      newMember,
+      _.slice(members, index)
+    );
+  
+    console.log(updated);
+  }
+  
 
 // 8. Extract the first and second elements using destructuring.
 function extractFirstAndSecond(members) {
