@@ -1,6 +1,4 @@
 
-
-````md
 # JavaScript & TypeScript Practice Tasks
 
 This repository contains 14 practice tasks implemented in different ways (plain JavaScript, Lodash, and TypeScript).  
