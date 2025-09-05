@@ -9,14 +9,15 @@ function getFirstNames(members) {
 
 // 2. Convert everyone’s last names to UPPERCASE in the given array of objects.
 function updateLastNamesToUpperCase(members) {
-  const updated = _.map(members, (m) => {
-    const parts = m.name.split(" ");
-    if (parts.length > 1) {
-      const last = _.toUpper(_.last(parts));
-      return { ...m, name: [..._.initial(parts), last].join(" ") };
-    }
-    return m;
-  });
+    const updated = _.map(members, (m) => {
+        const parts = _.words(m.name); // safer split
+        if (parts.length > 1) {
+          const last = _.toUpper(_.last(parts));
+          return { ...m, name: [..._.initial(parts), last].join(" ") };
+        }
+        return m;
+      });
+      
   console.log(updated);
 }
 
